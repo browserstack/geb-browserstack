@@ -1,6 +1,7 @@
 import spock.lang.*
 import geb.*
 import geb.spock.*
+import org.openqa.selenium.Keys
 
 class GoogleSpec extends GebReportingSpec {
 
@@ -9,7 +10,9 @@ class GoogleSpec extends GebReportingSpec {
         to GoogleHomePage
 
         and:
-        q = "BrowserStack"
+        def q = $("input", name: "q")
+        q << "BrowserStack"
+        q << Keys.ENTER
 
         then:
         waitFor { at GoogleResultsPage }

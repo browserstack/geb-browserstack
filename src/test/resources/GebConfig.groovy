@@ -22,11 +22,11 @@ reportingListener = new ReportingListener() {
 def browserStackBrowser = System.getProperty("geb.browserstack.browser")
 if (browserStackBrowser) {
     driver = {
-        def username = "<username>"
+        def username = System.getenv('BROWSERSTACK_USERNAME')
         assert username
-        def accessKey = "<automate-key>"
+        def accessKey = System.getenv('BROWSERSTACK_ACCESS_KEY')
         assert accessKey
-        new BrowserStackDriverFactory().create(browserStackBrowser, username, accessKey, ['browserstack.localIdentifier': System.getProperty('browserstack.localIdentifier'), 'build' : 'Sample Geb Tests'])
+        new BrowserStackDriverFactory().create(browserStackBrowser, username, accessKey)
     }
 }
 
@@ -43,4 +43,3 @@ environments {
     }
 
 }
-
